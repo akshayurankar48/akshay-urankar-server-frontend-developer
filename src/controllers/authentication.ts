@@ -2,12 +2,14 @@
 import express from 'express';
 import { authentication, random } from '../helpers';
 import { getUserByEmail, createUser } from '../db/users';
+import console from 'console';
 
 // Controller function for user registration
 export const register = async (req: express.Request, res: express.Response) => {
   try {
     // Extract required information from the request body
     const { email, password, username } = req.body;
+    console.log(req.body)
 
     // Validate presence of required fields in the request
     if (!email || !password || !username) {
