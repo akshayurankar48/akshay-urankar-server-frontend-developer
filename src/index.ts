@@ -2,7 +2,7 @@
 require('dotenv').config();
 
 // Import necessary modules and libraries
-import express from 'express';
+import express, { Express } from 'express';
 import http from 'http';
 import bodyParser from 'body-parser';
 import cookieParser from 'cookie-parser';
@@ -11,12 +11,12 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 
 // Create an Express application
-const app = express();
+const app: Express = express();
 
 // Retrieve environment variables
-const CLIENT_URL = process.env.CLIENT_URL; // URL of the client application
-const MONGO_URI = process.env.MONGO_URI; // MongoDB connection URI
-const PORT = process.env.PORT; // Port on which the server will run
+const CLIENT_URL: string = process.env.CLIENT_URL; // URL of the client application
+const MONGO_URI: string = process.env.MONGO_URI; // MongoDB connection URI
+const PORT: string = process.env.PORT; // Port on which the server will run
 
 // Enable CORS with specified origin and credentials
 app.use(
@@ -36,7 +36,10 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 
 // Create an HTTP server using the Express application
-const server = http.createServer(app);
+const server: http.Server<
+  typeof http.IncomingMessage,
+  typeof http.ServerResponse
+> = http.createServer(app);
 
 // Start the server and listen on the specified port
 server.listen(PORT, () => {
