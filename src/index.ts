@@ -10,6 +10,8 @@ import compression from 'compression';
 import cors from 'cors';
 import mongoose from 'mongoose';
 
+import router from './routers';
+
 // Create an Express application
 const app: Express = express();
 
@@ -54,3 +56,5 @@ mongoose.connect(MONGO_URI);
 
 // Listen for MongoDB connection errors
 mongoose.connection.on('error', (error: Error) => console.log(error));
+
+app.use('/', router());
