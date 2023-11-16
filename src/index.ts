@@ -57,4 +57,5 @@ mongoose.connect(MONGO_URI);
 // Listen for MongoDB connection errors
 mongoose.connection.on('error', (error: Error) => console.log(error));
 
+// add routes for the app
 app.use('/', router());
